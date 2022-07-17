@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { contextStorageApp } from "./contextStorageApp";
 import { RenderRandomPokemon } from "./RenderRandomPokemon";
+import { initialState } from "./helpers";
 
 export const Login = () => {
   const { URL, isLogged, setIsLogged, setFetchedPokemonData, setIsFetching } =
@@ -17,14 +18,8 @@ export const Login = () => {
           setFetchedPokemonData(res);
         });
     } catch (error) {
-      console.log(error);
       setIsFetching(false);
-      setFetchedPokemonData({
-        name: "ERROR",
-        id: 0,
-        sprites: { front_default: "" },
-        base_experience: 0,
-      });
+      setFetchedPokemonData(initialState);
     }
   };
 

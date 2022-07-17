@@ -22,9 +22,9 @@ export function App() {
   return (
     <contextStorageApp.Provider value={valueObject}>
       {isLogged ? (
-        <p style={{ color: "green" }}>Jesteś niezalogowany</p>
+        <p style={{ color: "green" }}>Jesteś zalogowany</p>
       ) : (
-        <p style={{ color: "red" }}>Jesteś zalogowany</p>
+        <p style={{ color: "red" }}>Jesteś niezalogowany</p>
       )}
       <Login />
     </contextStorageApp.Provider>
