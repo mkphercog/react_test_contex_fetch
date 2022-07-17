@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import { Login } from "./Login";
+import { contextStorageApp } from "./contextStorageApp";
 
-function App() {
+export function App() {
+  const [isLogged, setIsLogged] = useState(false);
+  const [fetchedPokemonData, setFetchedPokemonData] = useState();
+  const [isFetching, setIsFetching] = useState(false);
+
+  const min = 1;
+  const max = 100;
+  const randomNumber = Math.floor(Math.random() * (max - min) + min);
+  const URL = `https://pokeapi.co/api/v2/pokemon/${randomNumber}`;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <contextStorageApp.Provider
+      value={{
+        URL,
+        isLogged,
+        setIsLogged,
+        isFetching,
+        setIsFetching,
+        fetchedPokemonData,
+        setFetchedPokemonData,
+      }}
+    >
+      <p style={{ color: isLogged ? "green" : "red" }}>{`Jesteś ${
+        isLogged ? "" : "nie"
+      } zalogowany`}</p>
+      <Login />
+    </contextStorageApp.Provider>
   );
 }
-
-export default App;
