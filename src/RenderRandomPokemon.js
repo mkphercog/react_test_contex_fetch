@@ -3,30 +3,17 @@ import { contextStorageApp } from "./contextStorageApp";
 
 export const RenderRandomPokemon = () => {
   const { fetchedPokemonData, isFetching } = useContext(contextStorageApp);
+  const { name, id, sprites, base_experience } = fetchedPokemonData;
 
   return (
     <>
       {isFetching ? (
         <p>Ładowanie...</p>
-      ) : (
+      ) : id === 0 ? null : (
         <>
-          <p>
-            {" "}
-            {fetchedPokemonData
-              ? `Nazwa: ${fetchedPokemonData.name}, ID: ${fetchedPokemonData.id}`
-              : ""}
-          </p>
-          <img
-            src={
-              fetchedPokemonData ? fetchedPokemonData.sprites.front_default : ""
-            }
-            alt={fetchedPokemonData ? fetchedPokemonData.name : ""}
-          />
-          <p>
-            {fetchedPokemonData
-              ? `Podstawowe doświadczenie: ${fetchedPokemonData.base_experience} exp`
-              : ""}
-          </p>
+          <p> {`Nazwa: ${name}, ID: ${id}`}</p>
+          <img src={sprites.front_default} alt={name} />
+          <p>{`Podstawowe doświadczenie: ${base_experience} exp`}</p>
         </>
       )}
     </>

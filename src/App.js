@@ -5,7 +5,12 @@ import { contextStorageApp } from "./contextStorageApp";
 
 export function App() {
   const [isLogged, setIsLogged] = useState(false);
-  const [fetchedPokemonData, setFetchedPokemonData] = useState();
+  const [fetchedPokemonData, setFetchedPokemonData] = useState({
+    name: "",
+    id: 0,
+    sprites: { front_default: "" },
+    base_experience: 0,
+  });
   const [isFetching, setIsFetching] = useState(false);
 
   const min = 1;
@@ -27,7 +32,7 @@ export function App() {
     >
       <p style={{ color: isLogged ? "green" : "red" }}>{`Jesteś ${
         isLogged ? "" : "nie"
-      } zalogowany`}</p>
+      }zalogowany`}</p>
       <Login />
     </contextStorageApp.Provider>
   );
